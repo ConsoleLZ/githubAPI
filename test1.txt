@@ -1,0 +1,54 @@
+const AV = require("leancloud-storage");
+  //  初始化 LeanCloud
+  AV.init({
+    appId: "你的id",
+    appKey: "你的key",
+    serverURL: "https://ysyeflyc.lc-cn-n1-shared.com",
+  });
+  export default {
+    methods: {
+      btn() {
+        AV.User.logIn(username.value, password.value).then(
+          (user) => {
+            // 登录成功
+            this.$router.push('/chou')
+          },
+          (error) => {
+            // 登录失败（可能是密码错误）
+            console.log("登录失败");
+          }
+        );
+      },
+    },
+  };
+
+
+
+var currentUser = AV.User.current();
+currentUser.set("awordNumber", 0);
+     currentUser
+            .save()
+            .then(function (updatedUser) {
+              // 更新成功
+              console.log("更新成功")
+            })
+            .catch(function (error) {
+              // 更新失败
+            });
+
+
+
+var token = localStorage.getItem('AV/YsYeflyCpiGJrcfPnYM80d43-gzGzoHsz/currentUser')
+var tokenObj = JSON.parse(token)
+AV.User.become(tokenObj?._sessionToken)
+        .then(function (user) {
+          // token 验证成功，user 是验证后返回的用户对象
+          console.log(user)
+        })
+        .catch(function (error) {
+          // token 验证失败
+          console.log("验证失败")
+        });
+
+
+
