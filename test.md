@@ -26,7 +26,7 @@ phaser官网：[Phaser - A fast, fun and free open source HTML5 game framework](
 
 这里作者就不用npm了，直接引入的cdn
 
-`<script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.85.1/phaser.min.js"></script>`
+``
 
 这样没有代码提示（有没有大佬知道代码提示插件的，市面上的插件好像都有bug，可能太久没更新了🤔），你也可以使用npm，作者就是图个方便，好了废话不说了，反正环境搭建非常简单，你随便发挥，哈哈哈哈
 
@@ -34,7 +34,7 @@ phaser官网：[Phaser - A fast, fun and free open source HTML5 game framework](
 
 这里使用的是一张宝可梦中角色的精灵图（从小就喜欢），大家也可以直接自己随便找一张这种关键帧的精灵图，想要作者的素材的，我也非常贴心的上传了（仅供学习使用）：
 
-链接:<https://pan.baidu.com/s/1WeJ1H_dX_xZDvLqXJrLf4w >
+链接:
 提取码:dj8m
 
 ## 游戏场景初始化
@@ -64,7 +64,7 @@ const config = {
 
 config属性说明：
 
-1.  type: 指定渲染器类型。`Phaser.AUTO` 会自动选择最适合的渲染方式（通常是WebGL，如果浏览器不支持则回退到Canvas）
+1.  type: 指定渲染器类型。`Phaser.AUTO` 会自动选择最适合的渲染方式（通常是WebGL，如果浏览器不支持则回退到Canvas）
 2.  parent: 指定一个DOM元素ID，作为游戏画布的父容器
 3.  scene: 定义了场景相关的配置，包括预加载资源、创建游戏世界和更新逻辑的方法
     *   preload: 用于加载游戏所需的资源（如图片、音频等）。这是一个函数引用，实际的加载逻辑需要在对应的函数中实现
@@ -163,12 +163,12 @@ function create() {
 
 说明:
 
-1.  `this.physics.add.sprite(x, y, textureKey)`: 创建一个带有物理属性的精灵。`x` 和 `y` 是精灵的初始位置，这里设置为窗口宽度和高度的一半，使角色居中显示。`textureKey` 是在 `preload` 中加载的精灵图的键名
-2.  `player.setCollideWorldBounds(true)`: 设置玩家角色与世界边界碰撞时的行为。`true` 表示当玩家角色碰到世界边界时会停止移动。
+1.  `this.physics.add.sprite(x, y, textureKey)`: 创建一个带有物理属性的精灵。`x` 和 `y` 是精灵的初始位置，这里设置为窗口宽度和高度的一半，使角色居中显示。`textureKey` 是在 `preload` 中加载的精灵图的键名
+2.  `player.setCollideWorldBounds(true)`: 设置玩家角色与世界边界碰撞时的行为。`true` 表示当玩家角色碰到世界边界时会停止移动。
 3.  `this.anims.create(config)`: 创建一个新的动画
-4.  `frames`: 定义动画帧。使用 `this.anims.generateFrameNumbers` 方法来生成一系列帧编号。`start` 和 `end` 参数指定了起始帧和结束帧的索引。例如，`{ start: 0, end: 2 }` 表示从第0帧到第2帧
-5.  `frameRate`: 每秒播放的帧数。这里设置为 `10`，意味着每秒播放10帧
-6.  `repeat`: 动画是否重复播放。`-1` 表示无限循环
+4.  `frames`: 定义动画帧。使用 `this.anims.generateFrameNumbers` 方法来生成一系列帧编号。`start` 和 `end` 参数指定了起始帧和结束帧的索引。例如，`{ start: 0, end: 2 }` 表示从第0帧到第2帧
+5.  `frameRate`: 每秒播放的帧数。这里设置为 `10`，意味着每秒播放10帧
+6.  `repeat`: 动画是否重复播放。`-1` 表示无限循环
 
 ## update函数
 
@@ -214,156 +214,24 @@ function update() {
 ## 完整代码
 
 ```html
-<!DOCTYPE html>
-<html lang="zh-cn">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.85.1/phaser.min.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
 
-        #game {
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-        }
-    </style>
-</head>
 
-<body>
-    <div id="game"></div>
-    <script>
-        const config = {
-            type: Phaser.AUTO,
-            width: window.innerWidth,
-            height: window.innerHeight,
-            parent: 'game',
-            backgroundColor: '#efefef',
-            scene: {
-                preload: preload,
-                create: create,
-                update: update
-            },
-            physics: {
-                default: 'arcade',
-                arcade: {
-                    gravity: false
-                },
-            }
-        };
 
-        const game = new Phaser.Game(config);
+    
+    
+    
+    
+    
 
-        function preload() {
-            this.load.spritesheet({
-                key: 'role',
-                url: 'assets/role.png',
-                frameConfig: {
-                    frameWidth: 64,
-                    frameHeight: 64,
-                }
-            });
 
-        }
 
-        function create() {
-            player = this.physics.add.sprite(window.innerWidth / 2, window.innerHeight / 2, 'role');
-            player.setCollideWorldBounds(true);
+    
 
-            this.anims.create({
-                key: 'up',
-                frames: this.anims.generateFrameNumbers('role', { start: 0, end: 2 }),
-                frameRate: 10,
-                repeat: -1
-            });
 
-            this.anims.create({
-                key: 'right',
-                frames: this.anims.generateFrameNumbers('role', { start: 4, end: 6 }),
-                frameRate: 10,
-                repeat: -1
-            });
+    
 
-            this.anims.create({
-                key: 'down',
-                frames: this.anims.generateFrameNumbers('role', { start: 8, end: 10 }),
-                frameRate: 10,
-                repeat: -1
-            });
 
-            this.anims.create({
-                key: 'left',
-                frames: this.anims.generateFrameNumbers('role', { start: 12, end: 14 }),
-                frameRate: 10,
-                repeat: -1
-            });
 
-            this.anims.create({
-                key: 'idle_up',
-                frames: [{ key: 'role', frame: 1 }],
-                frameRate: 20
-            });
-
-            this.anims.create({
-                key: 'idle_right',
-                frames: [{ key: 'role', frame: 5 }],
-                frameRate: 20
-            });
-
-            this.anims.create({
-                key: 'idle_down',
-                frames: [{ key: 'role', frame: 9 }],
-                frameRate: 20
-            });
-
-            this.anims.create({
-                key: 'idle_left',
-                frames: [{ key: 'role', frame: 13 }],
-                frameRate: 20
-            });
-        }
-
-        let action_type = 'idle_down'
-        // 角色的移动速度
-        const velocity = 160
-        function update() {
-            const cursors = this.input.keyboard.createCursorKeys();
-            // 默认情况下，停止所有方向上的运动
-            player.setVelocityX(0);
-            player.setVelocityY(0);
-            switch (true) {
-                case cursors.up.isDown:
-                    player.anims.play('up', true);
-                    player.setVelocityY(-velocity);
-                    action_type = 'idle_up'
-                    break;
-                case cursors.right.isDown:
-                    player.anims.play('right', true);
-                    player.setVelocityX(velocity);
-                    action_type = 'idle_right'
-                    break;
-                case cursors.down.isDown:
-                    player.anims.play('down', true);
-                    player.setVelocityY(velocity);
-                    action_type = 'idle_down'
-                    break;
-                case cursors.left.isDown:
-                    player.anims.play('left', true);
-                    player.setVelocityX(-velocity);
-                    action_type = 'idle_left'
-                    break;
-                default:
-                    player.anims.play(action_type, true);
-            }
-        }
-    </script>
-</body>
-
-</html>
 ```
+测试
